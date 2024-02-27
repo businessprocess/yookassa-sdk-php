@@ -1,6 +1,6 @@
 # YooKassa API PHP Client Library
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/businessprocess/yookassa-sdk-php?label=stable)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
+[![Latest Stable Version](https://img.shields.io/packagist/v/businessprocess/yookassa-sdk-php?label=stable)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
 [![Total Downloads](https://img.shields.io/packagist/dt/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
 [![Monthly Downloads](https://img.shields.io/packagist/dm/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
 [![License](https://img.shields.io/packagist/l/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
@@ -20,7 +20,7 @@ PHP 8.0 (и выше) с расширением libcurl
 1. [Установите менеджер пакетов Composer](https://getcomposer.org/download/).
 2. В консоли выполните команду:
 ```bash
-composer require yoomoney/yookassa-sdk-php
+composer require businessprocess/yookassa-sdk-php
 ```
 
 ### В файле composer.json своего проекта
@@ -29,7 +29,7 @@ composer require yoomoney/yookassa-sdk-php
 ...
     "require": {
         "php": ">=8.0",
-        "yoomoney/yookassa-sdk-php": "^3.0"
+        "businessprocess/yookassa-sdk-php": "^3.0"
 ...
 ```
 2. Обновите зависимости проекта. В консоли перейдите в каталог, где лежит composer.json, и выполните команду:
