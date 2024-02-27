@@ -21,7 +21,6 @@
     "ext-curl": "*",
     "ext-json": "*",
     "ext-mbstring": "*",
-    "yoomoney/yookassa-sdk-validator": "^1.0",
     "php-ds/php-ds": "^1.4",
     "psr/log": "^2.0 || ^3.0"
   },
