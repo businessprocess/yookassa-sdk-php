@@ -1,9 +1,9 @@
 # YooKassa API PHP Client Library
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/businessprocess/yookassa-sdk-php?label=stable)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
-[![Total Downloads](https://img.shields.io/packagist/dt/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
-[![Monthly Downloads](https://img.shields.io/packagist/dm/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
-[![License](https://img.shields.io/packagist/l/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
+[![License](https://img.shields.io/packagist/l/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
 
 Russian | [English](README.en.md)
 
