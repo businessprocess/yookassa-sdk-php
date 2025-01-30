@@ -1,9 +1,9 @@
 <?php
 
-/**
- * The MIT License.
+/*
+ * The MIT License
  *
- * Copyright (c) 2023 "YooMoney", NBСO LLC
+ * Copyright (c) 2025 "YooMoney", NBСO LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,16 +41,28 @@ use YooKassa\Validator\Constraints as Assert;
  *
  * @property string|null $sbp_operation_id Идентификатор операции в СБП (НСПК).
  * @property string|null $sbpOperationId Идентификатор операции в СБП (НСПК).
+ * @property SbpPayerBankDetails|null $payer_bank_details Реквизиты счета, который использовался для оплаты.
+ * @property SbpPayerBankDetails|null $payerBankDetails Реквизиты счета, который использовался для оплаты.
  */
 class PaymentMethodSbp extends AbstractPaymentMethod
 {
     /**
-     * Идентификатор операции в СБП (НСПК). Пример: `1027088AE4CB48CB81287833347A8777` Обязательный параметр для платежей в статусе ~`succeeded`. В остальных случаях может отсутствовать.
+     * Идентификатор операции в СБП (НСПК). Пример: `1027088AE4CB48CB81287833347A8777`
+     * Обязательный параметр для платежей в статусе ~`succeeded`. В остальных случаях может отсутствовать.
      *
      * @var string|null
      */
     #[Assert\Type('string')]
     private ?string $_sbp_operation_id = null;
+
+    /**
+     * Реквизиты счета, который использовался для оплаты.
+     * Обязательный параметр для платежей в статусе ~`succeeded`. В остальных случаях может отсутствовать.
+     *
+     * @var SbpPayerBankDetails|null
+     */
+    #[Assert\Type(SbpPayerBankDetails::class)]
+    private ?SbpPayerBankDetails $_payer_bank_details = null;
 
     public function __construct(?array $data = [])
     {
@@ -61,7 +73,7 @@ class PaymentMethodSbp extends AbstractPaymentMethod
     /**
      * Возвращает sbp_operation_id.
      *
-     * @return string|null
+     * @return string|null Идентификатор операции в СБП (НСПК).
      */
     public function getSbpOperationId(): ?string
     {
@@ -81,4 +93,26 @@ class PaymentMethodSbp extends AbstractPaymentMethod
         return $this;
     }
 
+    /**
+     * Возвращает payer_bank_details.
+     *
+     * @return SbpPayerBankDetails|null Реквизиты счета, который использовался для оплаты.
+     */
+    public function getPayerBankDetails(): ?SbpPayerBankDetails
+    {
+        return $this->_payer_bank_details;
+    }
+
+    /**
+     * Устанавливает payer_bank_details.
+     *
+     * @param SbpPayerBankDetails|array|null $payer_bank_details Реквизиты счета, который использовался для оплаты.
+     *
+     * @return self
+     */
+    public function setPayerBankDetails(mixed $payer_bank_details = null): self
+    {
+        $this->_payer_bank_details = $this->validatePropertyValue('_payer_bank_details', $payer_bank_details);
+        return $this;
+    }
 }

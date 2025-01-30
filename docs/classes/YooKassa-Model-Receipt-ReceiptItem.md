@@ -30,6 +30,7 @@
 | public | [$customsDeclarationNumber](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_customsDeclarationNumber) |  | Номер таможенной декларации (от 1 до 32 символов). Тег в 54 ФЗ — 1231 |
 | public | [$description](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_description) |  | Наименование товара (тег в 54 ФЗ — 1030) |
 | public | [$excise](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_excise) |  | Сумма акциза товара с учетом копеек (тег в 54 ФЗ — 1229) |
+| public | [$is_shipping](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_is_shipping) |  | Флаг доставки |
 | public | [$isShipping](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_isShipping) |  | Флаг доставки |
 | public | [$mark_code_info](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_mark_code_info) |  | Код товара (тег в 54 ФЗ — 1163) |
 | public | [$mark_mode](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_mark_mode) |  | Режим обработки кода маркировки (тег в 54 ФЗ — 2102) |
@@ -49,8 +50,8 @@
 | public | [$productCode](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_productCode) |  | Код товара (тег в 54 ФЗ — 1162) |
 | public | [$quantity](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_quantity) |  | Количество (тег в 54 ФЗ — 1023) |
 | public | [$supplier](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_supplier) |  | Информация о поставщике товара или услуги (тег в 54 ФЗ — 1224) |
-| public | [$vat_code](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_vat_code) |  | Ставка НДС (тег в 54 ФЗ — 1199), число 1-6 |
-| public | [$vatCode](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_vatCode) |  | Ставка НДС (тег в 54 ФЗ — 1199), число 1-6 |
+| public | [$vat_code](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_vat_code) |  | Ставка НДС (тег в 54 ФЗ — 1199), число 1-10 |
+| public | [$vatCode](../classes/YooKassa-Model-Receipt-ReceiptItem.md#property_vatCode) |  | Ставка НДС (тег в 54 ФЗ — 1199), число 1-10 |
 
 ---
 ### Methods
@@ -281,6 +282,18 @@ ADD_PROPS_MAX_LENGTH = 64 : int
 Сумма акциза товара с учетом копеек (тег в 54 ФЗ — 1229)
 
 **Type:** <a href="../float"><abbr title="float">float</abbr></a>
+
+**Details:**
+
+
+<a name="property_is_shipping"></a>
+#### public $is_shipping : bool
+---
+***Description***
+
+Флаг доставки
+
+**Type:** <a href="../bool"><abbr title="bool">bool</abbr></a>
 
 **Details:**
 
@@ -518,7 +531,7 @@ ADD_PROPS_MAX_LENGTH = 64 : int
 ---
 ***Description***
 
-Ставка НДС (тег в 54 ФЗ — 1199), число 1-6
+Ставка НДС (тег в 54 ФЗ — 1199), число 1-10
 
 **Type:** <a href="../int"><abbr title="int">int</abbr></a>
 
@@ -530,7 +543,7 @@ ADD_PROPS_MAX_LENGTH = 64 : int
 ---
 ***Description***
 
-Ставка НДС (тег в 54 ФЗ — 1199), число 1-6
+Ставка НДС (тег в 54 ФЗ — 1199), число 1-10
 
 **Type:** <a href="../int"><abbr title="int">int</abbr></a>
 
@@ -1057,7 +1070,7 @@ public getVatCode() : null|int
 **Details:**
 * Inherited From: [\YooKassa\Model\Receipt\ReceiptItem](../classes/YooKassa-Model-Receipt-ReceiptItem.md)
 
-**Returns:** null|int - Ставка НДС, число 1-6, или null, если ставка не задана
+**Returns:** null|int - Ставка НДС, число 1-10, или null, если ставка не задана
 
 
 <a name="method_increasePrice" class="anchor"></a>
@@ -1689,10 +1702,10 @@ protected validatePropertyValue(string $propertyName, mixed $propertyValue) : mi
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

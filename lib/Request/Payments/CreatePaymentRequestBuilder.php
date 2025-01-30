@@ -1,9 +1,9 @@
 <?php
 
-/**
- * The MIT License.
+/*
+ * The MIT License
  *
- * Copyright (c) 2023 "YooMoney", NBСO LLC
+ * Copyright (c) 2025 "YooMoney", NBСO LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,6 +40,7 @@ use YooKassa\Request\Payments\ConfirmationAttributes\AbstractConfirmationAttribu
 use YooKassa\Request\Payments\ConfirmationAttributes\ConfirmationAttributesFactory;
 use YooKassa\Request\Payments\PaymentData\AbstractPaymentData;
 use YooKassa\Request\Payments\PaymentData\PaymentDataFactory;
+use YooKassa\Request\Payments\ReceiverData\AbstractReceiver;
 
 /**
  * Класс, представляющий модель CreatePaymentRequestBuilder.
@@ -187,7 +188,7 @@ class CreatePaymentRequestBuilder extends AbstractPaymentRequestBuilder
      *
      * @throws InvalidPropertyValueTypeException Выбрасывается если был передан объект невалидного типа
      */
-    public function setPaymentMethodData(mixed $value, array $options = null): CreatePaymentRequestBuilder
+    public function setPaymentMethodData(mixed $value, ?array $options = null): CreatePaymentRequestBuilder
     {
         if (is_string($value) && '' !== $value) {
             if (empty($options)) {
@@ -319,18 +320,17 @@ class CreatePaymentRequestBuilder extends AbstractPaymentRequestBuilder
     }
 
     /**
-     * Устанавливает сделку.
+     * Устанавливает информацию для проверки операции на мошенничество.
+     * @deprecated Больше не поддерживается. Вместо него нужно использовать `setReceiver()`
      *
-     * @param null|array|FraudData $value Данные о сделке, в составе которой проходит платеж
+     * @param null|array|FraudData $value Информация для проверки операции на мошенничество
      *
-     * @return CreatePaymentRequestBuilder Информация для проверки операции на мошенничество
+     * @return CreatePaymentRequestBuilder Инстанс билдера запросов
      *
      * @throws InvalidPropertyValueTypeException
      */
     public function setFraudData(mixed $value): CreatePaymentRequestBuilder
     {
-        $this->currentObject->setFraudData($value);
-
         return $this;
     }
 
@@ -377,6 +377,22 @@ class CreatePaymentRequestBuilder extends AbstractPaymentRequestBuilder
     }
 
     /**
+     * Устанавливает реквизиты получателя оплаты.
+     *
+     * @param null|array|AbstractReceiver $value Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона
+     *
+     * @return CreatePaymentRequestBuilder Инстанс билдера запросов
+     *
+     * @throws InvalidPropertyValueTypeException
+     */
+    public function setReceiver(mixed $value): CreatePaymentRequestBuilder
+    {
+        $this->currentObject->setReceiver($value);
+
+        return $this;
+    }
+
+    /**
      * Строит и возвращает объект запроса для отправки в API ЮKassa.
      *
      * @param null|array $options Массив параметров для установки в объект запроса
@@ -384,7 +400,7 @@ class CreatePaymentRequestBuilder extends AbstractPaymentRequestBuilder
      * @return CreatePaymentRequestInterface|AbstractRequestInterface Инстанс объекта запроса
      *
      */
-    public function build(array $options = null): AbstractRequestInterface
+    public function build(?array $options = null): AbstractRequestInterface
     {
         if (!empty($options)) {
             $this->setOptions($options);

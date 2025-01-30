@@ -1,9 +1,9 @@
 <?php
 
-/**
- * The MIT License.
+/*
+ * The MIT License
  *
- * Copyright (c) 2023 "YooMoney", NBСO LLC
+ * Copyright (c) 2025 "YooMoney", NBСO LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,6 +39,8 @@ use YooKassa\Request\Payments\ConfirmationAttributes\AbstractConfirmationAttribu
 use YooKassa\Request\Payments\ConfirmationAttributes\ConfirmationAttributesFactory;
 use YooKassa\Request\Payments\PaymentData\AbstractPaymentData;
 use YooKassa\Request\Payments\PaymentData\PaymentDataFactory;
+use YooKassa\Request\Payments\ReceiverData\AbstractReceiver;
+use YooKassa\Request\Payments\ReceiverData\ReceiverFactory;
 use YooKassa\Validator\Constraints as Assert;
 
 /**
@@ -71,10 +73,9 @@ use YooKassa\Validator\Constraints as Assert;
  * @property string $client_ip IPv4 или IPv6-адрес покупателя. Если не указан, используется IP-адрес TCP-подключения
  * @property Metadata $metadata Метаданные привязанные к платежу
  * @property PaymentDealInfo $deal Данные о сделке, в составе которой проходит платеж
- * @property FraudData $fraudData Информация для проверки операции на мошенничество
- * @property FraudData $fraud_data Информация для проверки операции на мошенничество
  * @property string $merchantCustomerId Идентификатор покупателя в вашей системе, например электронная почта или номер телефона
  * @property string $merchant_customer_id Идентификатор покупателя в вашей системе, например электронная почта или номер телефона
+ * @property AbstractReceiver|null $receiver Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона
  */
 class CreatePaymentRequest extends AbstractPaymentRequest implements CreatePaymentRequestInterface
 {
@@ -156,6 +157,7 @@ class CreatePaymentRequest extends AbstractPaymentRequest implements CreatePayme
 
     /**
      * @var FraudData|null Информация для проверки операции на мошенничество
+     * @deprecated Больше не поддерживается. Вместо него нужно использовать `receiver`
      */
     #[Assert\Valid]
     #[Assert\Type(FraudData::class)]
@@ -170,6 +172,15 @@ class CreatePaymentRequest extends AbstractPaymentRequest implements CreatePayme
     #[Assert\Type('string')]
     #[Assert\Length(max: Payment::MAX_LENGTH_MERCHANT_CUSTOMER_ID)]
     private ?string $_merchant_customer_id = null;
+
+    /**
+     * Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона
+     *
+     * @var AbstractReceiver|null
+     */
+    #[Assert\Valid]
+    #[Assert\Type(AbstractReceiver::class)]
+    private ?AbstractReceiver $_receiver = null;
 
     /**
      * Возвращает описание транзакции
@@ -199,7 +210,7 @@ class CreatePaymentRequest extends AbstractPaymentRequest implements CreatePayme
      */
     public function hasDescription(): bool
     {
-        return null !== $this->_description;
+        return !empty($this->_description);
     }
 
     /**
@@ -541,32 +552,34 @@ class CreatePaymentRequest extends AbstractPaymentRequest implements CreatePayme
     /**
      * Возвращает информацию для проверки операции на мошенничество.
      *
+     * @deprecated Больше не поддерживается. Вместо него нужно использовать `getReceiver()`
      * @return null|FraudData Информация для проверки операции на мошенничество
      */
     public function getFraudData(): ?FraudData
     {
-        return $this->_fraud_data;
+        return null;
     }
 
     /**
      * Устанавливает информацию для проверки операции на мошенничество.
      *
      * @param null|array|FraudData $fraud_data Информация для проверки операции на мошенничество
+     * @deprecated Больше не поддерживается. Вместо него нужно использовать `setReceiver()`
      */
     public function setFraudData(mixed $fraud_data = null): self
     {
-        $this->_fraud_data = $this->validatePropertyValue('_fraud_data', $fraud_data);
         return $this;
     }
 
     /**
      * Проверяет, была ли установлена информация для проверки операции на мошенничество.
      *
+     * @deprecated Больше не поддерживается. Вместо него нужно использовать `hasReceiver()`
      * @return bool True если информация была установлена, false если нет
      */
     public function hasFraudData(): bool
     {
-        return !empty($this->_fraud_data);
+        return false;
     }
 
     /**
@@ -597,6 +610,43 @@ class CreatePaymentRequest extends AbstractPaymentRequest implements CreatePayme
     public function setMerchantCustomerId(?string $merchant_customer_id): self
     {
         $this->_merchant_customer_id = $this->validatePropertyValue('_merchant_customer_id', $merchant_customer_id);
+        return $this;
+    }
+
+    /**
+     * Возвращает реквизиты получателя оплаты.
+     *
+     * @return AbstractReceiver|null Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона.
+     */
+    public function getReceiver(): ?AbstractReceiver
+    {
+        return $this->_receiver;
+    }
+
+    /**
+     * Проверяет, были ли установлены реквизиты получателя оплаты.
+     *
+     * @return bool True если реквизиты получателя оплаты были установлены, false если нет
+     */
+    public function hasReceiver(): bool
+    {
+        return null !== $this->_receiver;
+    }
+
+    /**
+     * Устанавливает реквизиты получателя оплаты.
+     *
+     * @param AbstractReceiver|array|null $receiver Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона.
+     *
+     * @return self
+     */
+    public function setReceiver(mixed $receiver = null): self
+    {
+        if (is_array($receiver)) {
+            $factory = new ReceiverFactory();
+            $receiver = $factory->factoryFromArray($receiver);
+        }
+        $this->_receiver = $this->validatePropertyValue('_receiver', $receiver);
         return $this;
     }
 

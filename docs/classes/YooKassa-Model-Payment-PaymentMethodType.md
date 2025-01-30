@@ -23,7 +23,7 @@
 - `webmoney` - Платеж из кошелька Webmoney
 - `alfabank` - Платеж через Альфа-Клик
 - `b2b_sberbank` - Сбербанк Бизнес Онлайн
-- `tinkoff_bank` - Интернет-банк Тинькофф
+- `tinkoff_bank` - T-Pay
 - `psb` - ПромсвязьБанк
 - `installments` - Заплатить по частям
 - `wechat` - Платеж через WeChat
@@ -38,18 +38,19 @@
 | public | [SBERBANK](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_SBERBANK) |  | Платеж СбербанкОнлайн |
 | public | [CASH](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_CASH) |  | Платеж наличными |
 | public | [MOBILE_BALANCE](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_MOBILE_BALANCE) |  | Платеж с баланса мобильного телефона |
-| public | [APPLE_PAY](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_APPLE_PAY) |  | латеж ApplePay |
+| public | [APPLE_PAY](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_APPLE_PAY) |  | Платеж ApplePay |
 | public | [GOOGLE_PAY](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_GOOGLE_PAY) |  | Платеж Google Pay |
-| public | [QIWI](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_QIWI) |  | Платеж из кошелька Qiwi |
+| public | [QIWI](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_QIWI) | *deprecated* | Платеж из кошелька Qiwi |
 | public | [WEBMONEY](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_WEBMONEY) | *deprecated* | Платеж из кошелька Webmoney |
 | public | [ALFABANK](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_ALFABANK) | *deprecated* | Платеж через Альфа-Клик |
 | public | [B2B_SBERBANK](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_B2B_SBERBANK) |  | Сбербанк Бизнес Онлайн |
-| public | [TINKOFF_BANK](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_TINKOFF_BANK) |  | Интернет-банк Тинькофф |
+| public | [TINKOFF_BANK](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_TINKOFF_BANK) |  | Платеж через T-Pay |
 | public | [PSB](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_PSB) | *deprecated* | ПромсвязьБанк |
-| public | [INSTALLMENTS](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_INSTALLMENTS) |  | Заплатить по частям |
+| public | [INSTALLMENTS](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_INSTALLMENTS) | *deprecated* | Заплатить по частям |
 | public | [WECHAT](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_WECHAT) | *deprecated* | Оплата через WeChat. |
 | public | [SBP](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_SBP) |  | Оплата через сервис быстрых платежей |
 | public | [SBER_LOAN](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_SBER_LOAN) |  | Прием оплаты с использованием Кредита от СберБанка |
+| public | [ELECTRONIC_CERTIFICATE](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_ELECTRONIC_CERTIFICATE) |  | Прием платежей по электронному сертификату, привязанному к карте «Мир» |
 | public | [UNKNOWN](../classes/YooKassa-Model-Payment-PaymentMethodType.md#constant_UNKNOWN) | *deprecated* | Для неизвестных методов оплаты |
 
 ---
@@ -133,7 +134,7 @@ MOBILE_BALANCE = 'mobile_balance'
 
 <a name="constant_APPLE_PAY" class="anchor"></a>
 ###### APPLE_PAY
-латеж ApplePay
+Платеж ApplePay
 
 ```php
 APPLE_PAY = 'apple_pay'
@@ -150,13 +151,15 @@ GOOGLE_PAY = 'google_pay'
 
 
 <a name="constant_QIWI" class="anchor"></a>
-###### QIWI
+###### ~~QIWI~~
 Платеж из кошелька Qiwi
 
 ```php
 QIWI = 'qiwi'
 ```
 
+**deprecated**
+Больше недоступен
 
 <a name="constant_WEBMONEY" class="anchor"></a>
 ###### ~~WEBMONEY~~
@@ -191,7 +194,7 @@ B2B_SBERBANK = 'b2b_sberbank'
 
 <a name="constant_TINKOFF_BANK" class="anchor"></a>
 ###### TINKOFF_BANK
-Интернет-банк Тинькофф
+Платеж через T-Pay
 
 ```php
 TINKOFF_BANK = 'tinkoff_bank'
@@ -210,13 +213,15 @@ PSB = 'psb'
 Больше недоступен
 
 <a name="constant_INSTALLMENTS" class="anchor"></a>
-###### INSTALLMENTS
+###### ~~INSTALLMENTS~~
 Заплатить по частям
 
 ```php
 INSTALLMENTS = 'installments'
 ```
 
+**deprecated**
+Больше недоступен
 
 <a name="constant_WECHAT" class="anchor"></a>
 ###### ~~WECHAT~~
@@ -244,6 +249,15 @@ SBP = 'sbp'
 
 ```php
 SBER_LOAN = 'sber_loan'
+```
+
+
+<a name="constant_ELECTRONIC_CERTIFICATE" class="anchor"></a>
+###### ELECTRONIC_CERTIFICATE
+Прием платежей по электронному сертификату, привязанному к карте «Мир»
+
+```php
+ELECTRONIC_CERTIFICATE = 'electronic_certificate'
 ```
 
 
@@ -340,10 +354,10 @@ Static public valueExists(mixed $value) : bool
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

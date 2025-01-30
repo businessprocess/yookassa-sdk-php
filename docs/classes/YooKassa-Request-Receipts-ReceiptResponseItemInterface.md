@@ -50,8 +50,8 @@ Interface ReceiptResponseItemInterface.
 | property |  | Количество (тег в 54 ФЗ — 1023) |
 | property |  | Суммарная стоимость покупаемого товара в копейках/центах |
 | property |  | Цена товара (тег в 54 ФЗ — 1079) |
-| property |  | Ставка НДС, число 1-6 (тег в 54 ФЗ — 1199) |
-| property |  | Ставка НДС, число 1-6 (тег в 54 ФЗ — 1199) |
+| property |  | Ставка НДС, число 1-10 (тег в 54 ФЗ — 1199) |
+| property |  | Ставка НДС, число 1-10 (тег в 54 ФЗ — 1199) |
 | property |  | Признак предмета расчета (тег в 54 ФЗ — 1212) |
 | property |  | Признак предмета расчета (тег в 54 ФЗ — 1212) |
 | property |  | Признак способа расчета (тег в 54 ФЗ — 1214) |
@@ -158,7 +158,7 @@ public getVatCode() : null|int
 **Details:**
 * Inherited From: [\YooKassa\Request\Receipts\ReceiptResponseItemInterface](../classes/YooKassa-Request-Receipts-ReceiptResponseItemInterface.md)
 
-**Returns:** null|int - Ставка НДС, число 1-6, или null, если ставка не задана
+**Returns:** null|int - Ставка НДС, число 1-10, или null, если ставка не задана
 
 
 <a name="method_getPaymentSubject" class="anchor"></a>
@@ -378,10 +378,10 @@ public getSupplier() : \YooKassa\Model\Receipt\SupplierInterface|null
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

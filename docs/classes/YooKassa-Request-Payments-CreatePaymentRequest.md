@@ -105,16 +105,14 @@ var_dump($response);
 | Visibility | Name | Flag | Summary |
 | ----------:| ---- | ---- | ------- |
 | public | [$airline](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md#property_airline) |  | Объект с данными для продажи авиабилетов |
-| public | [$amount](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_amount) |  | Сумма создаваемого платежа |
 | public | [$amount](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md#property_amount) |  | Сумма |
+| public | [$amount](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_amount) |  | Сумма создаваемого платежа |
 | public | [$capture](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_capture) |  | Автоматически принять поступившую оплату |
 | public | [$client_ip](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_client_ip) |  | IPv4 или IPv6-адрес покупателя. Если не указан, используется IP-адрес TCP-подключения |
 | public | [$clientIp](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_clientIp) |  | IPv4 или IPv6-адрес покупателя. Если не указан, используется IP-адрес TCP-подключения |
 | public | [$confirmation](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_confirmation) |  | Способ подтверждения платежа |
 | public | [$deal](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_deal) |  | Данные о сделке, в составе которой проходит платеж |
 | public | [$description](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_description) |  | Описание транзакции |
-| public | [$fraud_data](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_fraud_data) |  | Информация для проверки операции на мошенничество |
-| public | [$fraudData](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_fraudData) |  | Информация для проверки операции на мошенничество |
 | public | [$merchant_customer_id](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_merchant_customer_id) |  | Идентификатор покупателя в вашей системе, например электронная почта или номер телефона |
 | public | [$merchantCustomerId](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_merchantCustomerId) |  | Идентификатор покупателя в вашей системе, например электронная почта или номер телефона |
 | public | [$metadata](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_metadata) |  | Метаданные привязанные к платежу |
@@ -126,6 +124,7 @@ var_dump($response);
 | public | [$paymentToken](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_paymentToken) |  | Одноразовый токен для проведения оплаты, сформированный YooKassa JS widget |
 | public | [$receipt](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_receipt) |  | Данные фискального чека 54-ФЗ |
 | public | [$receipt](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md#property_receipt) |  | Данные фискального чека 54-ФЗ |
+| public | [$receiver](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_receiver) |  | Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона |
 | public | [$recipient](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_recipient) |  | Получатель платежа, если задан |
 | public | [$save_payment_method](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_save_payment_method) |  | Сохранить платежные данные для последующего использования. Значение true инициирует создание многоразового payment_method |
 | public | [$savePaymentMethod](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#property_savePaymentMethod) |  | Сохранить платежные данные для последующего использования. Значение true инициирует создание многоразового payment_method |
@@ -154,7 +153,7 @@ var_dump($response);
 | public | [getConfirmation()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getConfirmation) |  | Возвращает способ подтверждения платежа. |
 | public | [getDeal()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getDeal) |  | Возвращает данные о сделке, в составе которой проходит платеж. |
 | public | [getDescription()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getDescription) |  | Возвращает описание транзакции |
-| public | [getFraudData()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getFraudData) |  | Возвращает информацию для проверки операции на мошенничество. |
+| public | [getFraudData()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getFraudData) | *deprecated* | Возвращает информацию для проверки операции на мошенничество. |
 | public | [getLastValidationError()](../classes/YooKassa-Common-AbstractRequest.md#method_getLastValidationError) |  | Возвращает последнюю ошибку валидации. |
 | public | [getMerchantCustomerId()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getMerchantCustomerId) |  | Возвращает идентификатор покупателя в вашей системе. |
 | public | [getMetadata()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getMetadata) |  | Возвращает данные оплаты установленные мерчантом |
@@ -162,6 +161,7 @@ var_dump($response);
 | public | [getPaymentMethodId()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getPaymentMethodId) |  | Устанавливает идентификатор записи платёжных данных покупателя. |
 | public | [getPaymentToken()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getPaymentToken) |  | Возвращает одноразовый токен для проведения оплаты. |
 | public | [getReceipt()](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md#method_getReceipt) |  | Возвращает чек, если он есть. |
+| public | [getReceiver()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getReceiver) |  | Возвращает реквизиты получателя оплаты. |
 | public | [getRecipient()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getRecipient) |  | Возвращает объект получателя платежа. |
 | public | [getSavePaymentMethod()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_getSavePaymentMethod) |  | Возвращает флаг сохранения платёжных данных. |
 | public | [getTransfers()](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md#method_getTransfers) |  | Возвращает данные о распределении денег — сколько и в какой магазин нужно перевести. |
@@ -173,13 +173,14 @@ var_dump($response);
 | public | [hasConfirmation()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasConfirmation) |  | Проверяет, был ли установлен способ подтверждения платежа. |
 | public | [hasDeal()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasDeal) |  | Проверяет, были ли установлены данные о сделке. |
 | public | [hasDescription()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasDescription) |  | Проверяет наличие описания транзакции в создаваемом платеже. |
-| public | [hasFraudData()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasFraudData) |  | Проверяет, была ли установлена информация для проверки операции на мошенничество. |
+| public | [hasFraudData()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasFraudData) | *deprecated* | Проверяет, была ли установлена информация для проверки операции на мошенничество. |
 | public | [hasMerchantCustomerId()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasMerchantCustomerId) |  | Проверяет, был ли установлен идентификатор покупателя в вашей системе. |
 | public | [hasMetadata()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasMetadata) |  | Проверяет, были ли установлены метаданные заказа. |
 | public | [hasPaymentMethodData()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasPaymentMethodData) |  | Проверяет установлен ли объект с методом оплаты. |
 | public | [hasPaymentMethodId()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasPaymentMethodId) |  | Проверяет наличие идентификатора записи о платёжных данных покупателя. |
 | public | [hasPaymentToken()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasPaymentToken) |  | Проверяет наличие одноразового токена для проведения оплаты. |
 | public | [hasReceipt()](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md#method_hasReceipt) |  | Проверяет наличие чека. |
+| public | [hasReceiver()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasReceiver) |  | Проверяет, были ли установлены реквизиты получателя оплаты. |
 | public | [hasRecipient()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasRecipient) |  | Проверяет наличие получателя платежа в запросе. |
 | public | [hasSavePaymentMethod()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_hasSavePaymentMethod) |  | Проверяет, был ли установлен флаг сохранения платёжных данных. |
 | public | [hasTransfers()](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md#method_hasTransfers) |  | Проверяет наличие данных о распределении денег. |
@@ -196,13 +197,14 @@ var_dump($response);
 | public | [setConfirmation()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setConfirmation) |  | Устанавливает способ подтверждения платежа. |
 | public | [setDeal()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setDeal) |  | Устанавливает данные о сделке, в составе которой проходит платеж. |
 | public | [setDescription()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setDescription) |  | Устанавливает описание транзакции |
-| public | [setFraudData()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setFraudData) |  | Устанавливает информацию для проверки операции на мошенничество. |
+| public | [setFraudData()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setFraudData) | *deprecated* | Устанавливает информацию для проверки операции на мошенничество. |
 | public | [setMerchantCustomerId()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setMerchantCustomerId) |  | Устанавливает идентификатор покупателя в вашей системе. |
 | public | [setMetadata()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setMetadata) |  | Устанавливает метаданные, привязанные к платежу. |
 | public | [setPaymentMethodData()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setPaymentMethodData) |  | Устанавливает объект с информацией для создания метода оплаты. |
 | public | [setPaymentMethodId()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setPaymentMethodId) |  | Устанавливает идентификатор записи о сохранённых данных покупателя. |
 | public | [setPaymentToken()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setPaymentToken) |  | Устанавливает одноразовый токен для проведения оплаты, сформированный YooKassa JS widget. |
 | public | [setReceipt()](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md#method_setReceipt) |  | Устанавливает чек. |
+| public | [setReceiver()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setReceiver) |  | Устанавливает реквизиты получателя оплаты. |
 | public | [setRecipient()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setRecipient) |  | Устанавливает объект с информацией о получателе платежа. |
 | public | [setSavePaymentMethod()](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md#method_setSavePaymentMethod) |  | Устанавливает флаг сохранения платёжных данных. Значение true инициирует создание многоразового payment_method. |
 | public | [setTransfers()](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md#method_setTransfers) |  | Устанавливает transfers (массив распределения денег между магазинами). |
@@ -264,11 +266,12 @@ MAX_LENGTH_PAYMENT_TOKEN = 10240
 ---
 ***Description***
 
-Сумма создаваемого платежа
+Сумма
 
 **Type:** <a href="../classes/YooKassa-Model-AmountInterface.html"><abbr title="\YooKassa\Model\AmountInterface">AmountInterface</abbr></a>
 
 **Details:**
+* Inherited From: [\YooKassa\Request\Payments\AbstractPaymentRequest](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md)
 
 
 <a name="property_amount"></a>
@@ -276,12 +279,11 @@ MAX_LENGTH_PAYMENT_TOKEN = 10240
 ---
 ***Description***
 
-Сумма
+Сумма создаваемого платежа
 
 **Type:** <a href="../classes/YooKassa-Model-AmountInterface.html"><abbr title="\YooKassa\Model\AmountInterface">AmountInterface</abbr></a>
 
 **Details:**
-* Inherited From: [\YooKassa\Request\Payments\AbstractPaymentRequest](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md)
 
 
 <a name="property_capture"></a>
@@ -352,30 +354,6 @@ IPv4 или IPv6-адрес покупателя. Если не указан, и
 Описание транзакции
 
 **Type:** <a href="../string"><abbr title="string">string</abbr></a>
-
-**Details:**
-
-
-<a name="property_fraud_data"></a>
-#### public $fraud_data : \YooKassa\Request\Payments\FraudData
----
-***Description***
-
-Информация для проверки операции на мошенничество
-
-**Type:** <a href="../classes/YooKassa-Request-Payments-FraudData.html"><abbr title="\YooKassa\Request\Payments\FraudData">FraudData</abbr></a>
-
-**Details:**
-
-
-<a name="property_fraudData"></a>
-#### public $fraudData : \YooKassa\Request\Payments\FraudData
----
-***Description***
-
-Информация для проверки операции на мошенничество
-
-**Type:** <a href="../classes/YooKassa-Request-Payments-FraudData.html"><abbr title="\YooKassa\Request\Payments\FraudData">FraudData</abbr></a>
 
 **Details:**
 
@@ -511,6 +489,18 @@ IPv4 или IPv6-адрес покупателя. Если не указан, и
 
 **Details:**
 * Inherited From: [\YooKassa\Request\Payments\AbstractPaymentRequest](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md)
+
+
+<a name="property_receiver"></a>
+#### public $receiver : \YooKassa\Request\Payments\ReceiverData\AbstractReceiver|null
+---
+***Description***
+
+Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона
+
+**Type:** <a href="../\YooKassa\Request\Payments\ReceiverData\AbstractReceiver|null"><abbr title="\YooKassa\Request\Payments\ReceiverData\AbstractReceiver|null">AbstractReceiver|null</abbr></a>
+
+**Details:**
 
 
 <a name="property_recipient"></a>
@@ -888,7 +878,7 @@ public getDescription() : string|null
 
 
 <a name="method_getFraudData" class="anchor"></a>
-#### public getFraudData() : null|\YooKassa\Request\Payments\FraudData
+#### (deprecated) - public getFraudData() : null|\YooKassa\Request\Payments\FraudData
 
 ```php
 public getFraudData() : null|\YooKassa\Request\Payments\FraudData
@@ -898,6 +888,8 @@ public getFraudData() : null|\YooKassa\Request\Payments\FraudData
 
 Возвращает информацию для проверки операции на мошенничество.
 
+**Deprecated**
+DeprecatedБольше не поддерживается. Вместо него нужно использовать `getReceiver()`
 **Details:**
 * Inherited From: [\YooKassa\Request\Payments\CreatePaymentRequest](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md)
 
@@ -1021,6 +1013,23 @@ public getReceipt() : null|\YooKassa\Model\Receipt\ReceiptInterface
 * Inherited From: [\YooKassa\Request\Payments\AbstractPaymentRequest](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md)
 
 **Returns:** null|\YooKassa\Model\Receipt\ReceiptInterface - Данные фискального чека 54-ФЗ или null, если чека нет
+
+
+<a name="method_getReceiver" class="anchor"></a>
+#### public getReceiver() : \YooKassa\Request\Payments\ReceiverData\AbstractReceiver|null
+
+```php
+public getReceiver() : \YooKassa\Request\Payments\ReceiverData\AbstractReceiver|null
+```
+
+**Summary**
+
+Возвращает реквизиты получателя оплаты.
+
+**Details:**
+* Inherited From: [\YooKassa\Request\Payments\CreatePaymentRequest](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md)
+
+**Returns:** \YooKassa\Request\Payments\ReceiverData\AbstractReceiver|null - Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона.
 
 
 <a name="method_getRecipient" class="anchor"></a>
@@ -1212,7 +1221,7 @@ public hasDescription() : bool
 
 
 <a name="method_hasFraudData" class="anchor"></a>
-#### public hasFraudData() : bool
+#### (deprecated) - public hasFraudData() : bool
 
 ```php
 public hasFraudData() : bool
@@ -1222,6 +1231,8 @@ public hasFraudData() : bool
 
 Проверяет, была ли установлена информация для проверки операции на мошенничество.
 
+**Deprecated**
+DeprecatedБольше не поддерживается. Вместо него нужно использовать `hasReceiver()`
 **Details:**
 * Inherited From: [\YooKassa\Request\Payments\CreatePaymentRequest](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md)
 
@@ -1328,6 +1339,23 @@ public hasReceipt() : bool
 * Inherited From: [\YooKassa\Request\Payments\AbstractPaymentRequest](../classes/YooKassa-Request-Payments-AbstractPaymentRequest.md)
 
 **Returns:** bool - True если чек есть, false если нет
+
+
+<a name="method_hasReceiver" class="anchor"></a>
+#### public hasReceiver() : bool
+
+```php
+public hasReceiver() : bool
+```
+
+**Summary**
+
+Проверяет, были ли установлены реквизиты получателя оплаты.
+
+**Details:**
+* Inherited From: [\YooKassa\Request\Payments\CreatePaymentRequest](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md)
+
+**Returns:** bool - True если реквизиты получателя оплаты были установлены, false если нет
 
 
 <a name="method_hasRecipient" class="anchor"></a>
@@ -1674,7 +1702,7 @@ public setDescription(string|null $description) : \YooKassa\Request\Payments\Cre
 
 
 <a name="method_setFraudData" class="anchor"></a>
-#### public setFraudData() : self
+#### (deprecated) - public setFraudData() : self
 
 ```php
 public setFraudData(null|array|\YooKassa\Request\Payments\FraudData $fraud_data = null) : self
@@ -1684,6 +1712,8 @@ public setFraudData(null|array|\YooKassa\Request\Payments\FraudData $fraud_data 
 
 Устанавливает информацию для проверки операции на мошенничество.
 
+**Deprecated**
+DeprecatedБольше не поддерживается. Вместо него нужно использовать `setReceiver()`
 **Details:**
 * Inherited From: [\YooKassa\Request\Payments\CreatePaymentRequest](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md)
 
@@ -1844,6 +1874,28 @@ public setReceipt(null|array|\YooKassa\Model\Receipt\ReceiptInterface $receipt) 
 | Type | Name | Description |
 | ---- | ---- | ----------- |
 | <code lang="php">null OR array OR \YooKassa\Model\Receipt\ReceiptInterface</code> | receipt  | Инстанс чека или null для удаления информации о чеке |
+
+**Returns:** self - 
+
+
+<a name="method_setReceiver" class="anchor"></a>
+#### public setReceiver() : self
+
+```php
+public setReceiver(\YooKassa\Request\Payments\ReceiverData\AbstractReceiver|array|null $receiver = null) : self
+```
+
+**Summary**
+
+Устанавливает реквизиты получателя оплаты.
+
+**Details:**
+* Inherited From: [\YooKassa\Request\Payments\CreatePaymentRequest](../classes/YooKassa-Request-Payments-CreatePaymentRequest.md)
+
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code lang="php">\YooKassa\Request\Payments\ReceiverData\AbstractReceiver OR array OR null</code> | receiver  | Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона. |
 
 **Returns:** self - 
 
@@ -2024,10 +2076,10 @@ protected validatePropertyValue(string $propertyName, mixed $propertyValue) : mi
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

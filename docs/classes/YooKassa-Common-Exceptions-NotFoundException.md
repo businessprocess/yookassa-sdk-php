@@ -18,8 +18,8 @@
 ### Properties
 | Visibility | Name | Flag | Summary |
 | ----------:| ---- | ---- | ------- |
-| public | [$retryAfter](../classes/YooKassa-Common-Exceptions-NotFoundException.md#property_retryAfter) |  |  |
-| public | [$type](../classes/YooKassa-Common-Exceptions-NotFoundException.md#property_type) |  |  |
+| public | [$retryAfter](../classes/YooKassa-Common-Exceptions-ApiException.md#property_retryAfter) |  |  |
+| public | [$type](../classes/YooKassa-Common-Exceptions-ApiException.md#property_type) |  |  |
 | protected | [$responseBody](../classes/YooKassa-Common-Exceptions-ApiException.md#property_responseBody) |  |  |
 | protected | [$responseHeaders](../classes/YooKassa-Common-Exceptions-ApiException.md#property_responseHeaders) |  |  |
 
@@ -28,8 +28,13 @@
 | Visibility | Name | Flag | Summary |
 | ----------:| ---- | ---- | ------- |
 | public | [__construct()](../classes/YooKassa-Common-Exceptions-NotFoundException.md#method___construct) |  | Constructor. |
+| public | [getErrorCode()](../classes/YooKassa-Common-Exceptions-ApiException.md#method_getErrorCode) |  |  |
+| public | [getErrorDescription()](../classes/YooKassa-Common-Exceptions-ApiException.md#method_getErrorDescription) |  |  |
+| public | [getErrorId()](../classes/YooKassa-Common-Exceptions-ApiException.md#method_getErrorId) |  |  |
+| public | [getErrorParameter()](../classes/YooKassa-Common-Exceptions-ApiException.md#method_getErrorParameter) |  |  |
 | public | [getResponseBody()](../classes/YooKassa-Common-Exceptions-ApiException.md#method_getResponseBody) |  |  |
 | public | [getResponseHeaders()](../classes/YooKassa-Common-Exceptions-ApiException.md#method_getResponseHeaders) |  |  |
+| protected | [parseErrorResponse()](../classes/YooKassa-Common-Exceptions-ApiException.md#method_parseErrorResponse) |  |  |
 
 ---
 ### Details
@@ -58,6 +63,7 @@ HTTP_CODE = 404
 **Type:** <a href="../mixed"><abbr title="mixed">mixed</abbr></a>
 
 **Details:**
+* Inherited From: [\YooKassa\Common\Exceptions\ApiException](../classes/YooKassa-Common-Exceptions-ApiException.md)
 
 
 <a name="property_type"></a>
@@ -66,6 +72,7 @@ HTTP_CODE = 404
 **Type:** <a href="../mixed"><abbr title="mixed">mixed</abbr></a>
 
 **Details:**
+* Inherited From: [\YooKassa\Common\Exceptions\ApiException](../classes/YooKassa-Common-Exceptions-ApiException.md)
 
 
 <a name="property_responseBody"></a>
@@ -112,6 +119,58 @@ Constructor.
 **Returns:** mixed - 
 
 
+<a name="method_getErrorCode" class="anchor"></a>
+#### public getErrorCode() : ?string
+
+```php
+public getErrorCode() : ?string
+```
+
+**Details:**
+* Inherited From: [\YooKassa\Common\Exceptions\ApiException](../classes/YooKassa-Common-Exceptions-ApiException.md)
+
+**Returns:** ?string - 
+
+
+<a name="method_getErrorDescription" class="anchor"></a>
+#### public getErrorDescription() : ?string
+
+```php
+public getErrorDescription() : ?string
+```
+
+**Details:**
+* Inherited From: [\YooKassa\Common\Exceptions\ApiException](../classes/YooKassa-Common-Exceptions-ApiException.md)
+
+**Returns:** ?string - 
+
+
+<a name="method_getErrorId" class="anchor"></a>
+#### public getErrorId() : ?string
+
+```php
+public getErrorId() : ?string
+```
+
+**Details:**
+* Inherited From: [\YooKassa\Common\Exceptions\ApiException](../classes/YooKassa-Common-Exceptions-ApiException.md)
+
+**Returns:** ?string - 
+
+
+<a name="method_getErrorParameter" class="anchor"></a>
+#### public getErrorParameter() : ?string
+
+```php
+public getErrorParameter() : ?string
+```
+
+**Details:**
+* Inherited From: [\YooKassa\Common\Exceptions\ApiException](../classes/YooKassa-Common-Exceptions-ApiException.md)
+
+**Returns:** ?string - 
+
+
 <a name="method_getResponseBody" class="anchor"></a>
 #### public getResponseBody() : ?string
 
@@ -138,6 +197,24 @@ public getResponseHeaders() : string[]
 **Returns:** string[] - 
 
 
+<a name="method_parseErrorResponse" class="anchor"></a>
+#### protected parseErrorResponse() : string
+
+```php
+protected parseErrorResponse(mixed $responseBody) : string
+```
+
+**Details:**
+* Inherited From: [\YooKassa\Common\Exceptions\ApiException](../classes/YooKassa-Common-Exceptions-ApiException.md)
+
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code lang="php">mixed</code> | responseBody  |  |
+
+**Returns:** string - 
+
+
 
 ---
 
@@ -150,10 +227,10 @@ public getResponseHeaders() : string[]
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

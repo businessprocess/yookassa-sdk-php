@@ -171,4 +171,24 @@ abstract class AbstractTestApiRequestException extends ApiExceptionTest
         $instance = $this->getTestInstance();
         self::assertEquals($this->expectedHttpCode(), $instance->getCode());
     }
+
+    public function testConstruct(): void
+    {
+        $message = 'Test message';
+        $code = $this->expectedHttpCode();
+        $responseHeaders = ['Content-Type' => 'application/json'];
+        $responseBody = '{"type": "error", "id": "test_id", "code": "test_code", "description": "Test description", "parameter": "test_parameter"}';
+
+        $exception = $this->getTestInstance($message, $code, $responseHeaders, $responseBody);
+
+        $this->assertEquals($code, $exception->getCode());
+        $this->assertEquals($responseHeaders, $exception->getResponseHeaders());
+        $this->assertEquals($responseBody, $exception->getResponseBody());
+
+        $this->assertEquals('test_id', $exception->getErrorId());
+        $this->assertEquals('Test description. Error code: test_code. Parameter name: test_parameter.', $exception->getMessage());
+        $this->assertEquals('test_code', $exception->getErrorCode());
+        $this->assertEquals('Test description', $exception->getErrorDescription());
+        $this->assertEquals('test_parameter', $exception->getErrorParameter());
+    }
 }

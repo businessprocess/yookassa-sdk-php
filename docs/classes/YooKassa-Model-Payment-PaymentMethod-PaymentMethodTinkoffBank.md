@@ -9,7 +9,7 @@
 
 **Description:**
 
-Оплата через интернет-банк Тинькофф.
+Оплата через T-Pay.
 
 ---
 ### Constants
@@ -19,10 +19,12 @@
 ### Properties
 | Visibility | Name | Flag | Summary |
 | ----------:| ---- | ---- | ------- |
+| public | [$card](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodBankCard.md#property_card) |  | Данные банковской карты |
 | public | [$id](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#property_id) |  | Идентификатор записи о сохраненных платежных данных |
 | public | [$saved](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#property_saved) |  | Возможность многократного использования |
 | public | [$title](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#property_title) |  | Название метода оплаты |
 | public | [$type](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#property_type) |  | Код способа оплаты |
+| protected | [$_card](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodBankCard.md#property__card) |  |  |
 | protected | [$_id](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#property__id) |  | Идентификатор записи о сохраненных платежных данных. |
 | protected | [$_saved](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#property__saved) |  | С помощью сохраненного способа оплаты можно проводить [безакцептные списания](/developers/payment-acceptance/scenario-extensions/recurring-payments). |
 | protected | [$_title](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#property__title) |  | Название способа оплаты. |
@@ -38,6 +40,7 @@
 | public | [__set()](../classes/YooKassa-Common-AbstractObject.md#method___set) |  | Устанавливает значение свойства. |
 | public | [__unset()](../classes/YooKassa-Common-AbstractObject.md#method___unset) |  | Удаляет свойство. |
 | public | [fromArray()](../classes/YooKassa-Common-AbstractObject.md#method_fromArray) |  | Устанавливает значения свойств текущего объекта из массива. |
+| public | [getCard()](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodBankCard.md#method_getCard) |  | Возвращает данные банковской карты. |
 | public | [getId()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_getId) |  | Возвращает id. |
 | public | [getSaved()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_getSaved) |  | Возвращает saved. |
 | public | [getTitle()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_getTitle) |  | Возвращает Название способа оплаты. |
@@ -48,6 +51,7 @@
 | public | [offsetGet()](../classes/YooKassa-Common-AbstractObject.md#method_offsetGet) |  | Возвращает значение свойства. |
 | public | [offsetSet()](../classes/YooKassa-Common-AbstractObject.md#method_offsetSet) |  | Устанавливает значение свойства. |
 | public | [offsetUnset()](../classes/YooKassa-Common-AbstractObject.md#method_offsetUnset) |  | Удаляет свойство. |
+| public | [setCard()](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodBankCard.md#method_setCard) |  | Устанавливает данные банковской карты. |
 | public | [setId()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_setId) |  | Устанавливает id. |
 | public | [setSaved()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_setSaved) |  | Устанавливает признак возможности многократного использования. |
 | public | [setTitle()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_setTitle) |  | Устанавливает Название способа оплаты. |
@@ -60,9 +64,10 @@
 ### Details
 * File: [lib/Model/Payment/PaymentMethod/PaymentMethodTinkoffBank.php](../../lib/Model/Payment/PaymentMethod/PaymentMethodTinkoffBank.php)
 * Package: YooKassa\Model
-* Class Hierarchy:  
+* Class Hierarchy:   
   * [\YooKassa\Common\AbstractObject](../classes/YooKassa-Common-AbstractObject.md)
   * [\YooKassa\Model\Payment\PaymentMethod\AbstractPaymentMethod](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md)
+  * [\YooKassa\Model\Payment\PaymentMethod\PaymentMethodBankCard](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodBankCard.md)
   * \YooKassa\Model\Payment\PaymentMethod\PaymentMethodTinkoffBank
 
 * See Also:
@@ -77,6 +82,19 @@
 
 ---
 ## Properties
+<a name="property_card"></a>
+#### public $card : string
+---
+***Description***
+
+Данные банковской карты
+
+**Type:** <a href="../string"><abbr title="string">string</abbr></a>
+
+**Details:**
+* Inherited From: [\YooKassa\Model\Payment\PaymentMethod\PaymentMethodBankCard](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodBankCard.md)
+
+
 <a name="property_id"></a>
 #### public $id : string
 ---
@@ -127,6 +145,15 @@
 
 **Details:**
 * Inherited From: [\YooKassa\Model\Payment\PaymentMethod\AbstractPaymentMethod](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md)
+
+
+<a name="property__card"></a>
+#### protected $_card : ?\YooKassa\Model\Payment\PaymentMethod\BankCard
+---
+**Type:** <a href="../?\YooKassa\Model\Payment\PaymentMethod\BankCard"><abbr title="?\YooKassa\Model\Payment\PaymentMethod\BankCard">BankCard</abbr></a>
+Данные банковской карты
+**Details:**
+* Inherited From: [\YooKassa\Model\Payment\PaymentMethod\PaymentMethodBankCard](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodBankCard.md)
 
 
 <a name="property__id"></a>
@@ -311,6 +338,23 @@ public fromArray(array|\Traversable $sourceArray) : void
 | <code lang="php">array OR \Traversable</code> | sourceArray  | Ассоциативный массив с настройками |
 
 **Returns:** void - 
+
+
+<a name="method_getCard" class="anchor"></a>
+#### public getCard() : \YooKassa\Model\Payment\PaymentMethod\BankCard|null
+
+```php
+public getCard() : \YooKassa\Model\Payment\PaymentMethod\BankCard|null
+```
+
+**Summary**
+
+Возвращает данные банковской карты.
+
+**Details:**
+* Inherited From: [\YooKassa\Model\Payment\PaymentMethod\PaymentMethodBankCard](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodBankCard.md)
+
+**Returns:** \YooKassa\Model\Payment\PaymentMethod\BankCard|null - Данные банковской карты
 
 
 <a name="method_getId" class="anchor"></a>
@@ -500,6 +544,28 @@ public offsetUnset(string $offset) : void
 **Returns:** void - 
 
 
+<a name="method_setCard" class="anchor"></a>
+#### public setCard() : self
+
+```php
+public setCard(\YooKassa\Model\Payment\PaymentMethod\BankCard|array|null $card) : self
+```
+
+**Summary**
+
+Устанавливает данные банковской карты.
+
+**Details:**
+* Inherited From: [\YooKassa\Model\Payment\PaymentMethod\PaymentMethodBankCard](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodBankCard.md)
+
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code lang="php">\YooKassa\Model\Payment\PaymentMethod\BankCard OR array OR null</code> | card  | Данные банковской карты |
+
+**Returns:** self - 
+
+
 <a name="method_setId" class="anchor"></a>
 #### public setId() : self
 
@@ -669,10 +735,10 @@ protected validatePropertyValue(string $propertyName, mixed $propertyValue) : mi
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

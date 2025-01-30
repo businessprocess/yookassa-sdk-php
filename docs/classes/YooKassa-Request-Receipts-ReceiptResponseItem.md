@@ -47,8 +47,8 @@
 | public | [$productCode](../classes/YooKassa-Request-Receipts-ReceiptResponseItem.md#property_productCode) |  | Код товара — уникальный номер, который присваивается экземпляру товара при маркировке (тег в 54 ФЗ — 1162) |
 | public | [$quantity](../classes/YooKassa-Request-Receipts-ReceiptResponseItem.md#property_quantity) |  | Количество (тег в 54 ФЗ — 1023) |
 | public | [$supplier](../classes/YooKassa-Request-Receipts-ReceiptResponseItem.md#property_supplier) |  | Информация о поставщике товара или услуги (тег в 54 ФЗ — 1224) |
-| public | [$vat_code](../classes/YooKassa-Request-Receipts-ReceiptResponseItem.md#property_vat_code) |  | Ставка НДС, число 1-6 (тег в 54 ФЗ — 1199) |
-| public | [$vatCode](../classes/YooKassa-Request-Receipts-ReceiptResponseItem.md#property_vatCode) |  | Ставка НДС, число 1-6 (тег в 54 ФЗ — 1199) |
+| public | [$vat_code](../classes/YooKassa-Request-Receipts-ReceiptResponseItem.md#property_vat_code) |  | Ставка НДС, число 1-10 (тег в 54 ФЗ — 1199) |
+| public | [$vatCode](../classes/YooKassa-Request-Receipts-ReceiptResponseItem.md#property_vatCode) |  | Ставка НДС, число 1-10 (тег в 54 ФЗ — 1199) |
 
 ---
 ### Methods
@@ -480,7 +480,7 @@ MAX_PRODUCT_CODE_LENGTH = 96 : int
 ---
 ***Description***
 
-Ставка НДС, число 1-6 (тег в 54 ФЗ — 1199)
+Ставка НДС, число 1-10 (тег в 54 ФЗ — 1199)
 
 **Type:** <a href="../int"><abbr title="int">int</abbr></a>
 
@@ -492,7 +492,7 @@ MAX_PRODUCT_CODE_LENGTH = 96 : int
 ---
 ***Description***
 
-Ставка НДС, число 1-6 (тег в 54 ФЗ — 1199)
+Ставка НДС, число 1-10 (тег в 54 ФЗ — 1199)
 
 **Type:** <a href="../int"><abbr title="int">int</abbr></a>
 
@@ -951,7 +951,7 @@ public getVatCode() : null|int
 **Details:**
 * Inherited From: [\YooKassa\Request\Receipts\ReceiptResponseItem](../classes/YooKassa-Request-Receipts-ReceiptResponseItem.md)
 
-**Returns:** null|int - Ставка НДС, число 1-6, или null, если ставка не задана
+**Returns:** null|int - Ставка НДС, число 1-10, или null, если ставка не задана
 
 
 <a name="method_jsonSerialize" class="anchor"></a>
@@ -1429,7 +1429,7 @@ public setVatCode(int|null $vat_code = null) : self
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
-| <code lang="php">int OR null</code> | vat_code  | Ставка НДС, число 1-6 |
+| <code lang="php">int OR null</code> | vat_code  | Ставка НДС, число 1-10 |
 
 **Returns:** self - 
 
@@ -1500,10 +1500,10 @@ protected validatePropertyValue(string $propertyName, mixed $propertyValue) : mi
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

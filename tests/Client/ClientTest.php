@@ -2,7 +2,9 @@
 
 namespace Tests\YooKassa\Client;
 
+use DateTime;
 use Exception;
+use Faker\Provider\Internet;
 use InvalidArgumentException;
 use JsonException;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -30,6 +32,8 @@ use YooKassa\Helpers\Random;
 use YooKassa\Helpers\StringObject;
 use YooKassa\Model\Deal\DealType;
 use YooKassa\Model\Deal\FeeMoment;
+use YooKassa\Model\Invoice\LineItem;
+use YooKassa\Model\MonetaryAmount;
 use YooKassa\Model\Payment\PaymentMethodType;
 use YooKassa\Model\PersonalData\PersonalDataType;
 use YooKassa\Model\Receipt\ReceiptCustomer;
@@ -41,6 +45,9 @@ use YooKassa\Request\Deals\CreateDealResponse;
 use YooKassa\Request\Deals\DealResponse;
 use YooKassa\Request\Deals\DealsRequest;
 use YooKassa\Request\Deals\DealsResponse;
+use YooKassa\Request\Invoices\CreateInvoiceRequest;
+use YooKassa\Request\Invoices\InvoiceResponse;
+use YooKassa\Request\Invoices\PaymentData;
 use YooKassa\Request\Payments\CancelResponse;
 use YooKassa\Request\Payments\CreateCaptureRequest;
 use YooKassa\Request\Payments\CreateCaptureResponse;
@@ -53,8 +60,9 @@ use YooKassa\Request\Payouts\CreatePayoutRequest;
 use YooKassa\Request\Payouts\CreatePayoutResponse;
 use YooKassa\Request\Payouts\PayoutResponse;
 use YooKassa\Request\Payouts\SbpBanksResponse;
-use YooKassa\Request\PersonalData\CreatePersonalDataRequest;
 use YooKassa\Request\PersonalData\PersonalDataResponse;
+use YooKassa\Request\PersonalData\PersonalDataType\PayoutStatementRecipientPersonalDataRequest;
+use YooKassa\Request\PersonalData\PersonalDataType\SbpPayoutRecipientPersonalDataRequest;
 use YooKassa\Request\Receipts\AbstractReceiptResponse;
 use YooKassa\Request\Receipts\CreatePostReceiptRequest;
 use YooKassa\Request\Refunds\CreateRefundRequest;
@@ -318,7 +326,7 @@ class ClientTest extends TestCase
      * @throws TooManyRequestsException
      * @throws UnauthorizedException
      */
-    public function testGetPaymentInfo(mixed $paymentId, string $exceptionClassName = null): void
+    public function testGetPaymentInfo(mixed $paymentId, ?string $exceptionClassName = null): void
     {
         $curlClientStub = $this->getCurlClientStub();
         $curlClientStub
@@ -530,7 +538,7 @@ class ClientTest extends TestCase
      * @throws TooManyRequestsException
      * @throws UnauthorizedException
      */
-    public function testPaymentIdCapturePayment(mixed $paymentId, string $exceptionClassName = null): void
+    public function testPaymentIdCapturePayment(mixed $paymentId, ?string $exceptionClassName = null): void
     {
         $curlClientStub = $this->getCurlClientStub();
         $curlClientStub
@@ -577,7 +585,7 @@ class ClientTest extends TestCase
      * @throws TooManyRequestsException
      * @throws UnauthorizedException
      */
-    public function testCancelPayment(mixed $paymentId, string $exceptionClassName = null): void
+    public function testCancelPayment(mixed $paymentId, ?string $exceptionClassName = null): void
     {
         $invalid = null !== $exceptionClassName;
         $curlClientStub = $this->getCurlClientStub();
@@ -855,7 +863,7 @@ class ClientTest extends TestCase
      * @throws UnauthorizedException
      * @throws ExtensionNotFoundException
      */
-    public function testRefundInfo(mixed $refundId, string $exceptionClassName = null): void
+    public function testRefundInfo(mixed $refundId, ?string $exceptionClassName = null): void
     {
         $curlClientStub = $this->getCurlClientStub();
         $curlClientStub
@@ -1513,7 +1521,7 @@ class ClientTest extends TestCase
      * @throws UnauthorizedException
      * @throws ExtensionNotFoundException
      */
-    public function testGetDealInfo(mixed $dealId, string $exceptionClassName = null): void
+    public function testGetDealInfo(mixed $dealId, ?string $exceptionClassName = null): void
     {
         $curlClientStub = $this->getCurlClientStub();
         $curlClientStub
@@ -1792,7 +1800,7 @@ class ClientTest extends TestCase
      * @throws UnauthorizedException
      * @throws ExtensionNotFoundException
      */
-    public function testGetPayoutInfo(mixed $payoutId, string $exceptionClassName = null): void
+    public function testGetPayoutInfo(mixed $payoutId, ?string $exceptionClassName = null): void
     {
         $curlClientStub = $this->getCurlClientStub();
         $curlClientStub
@@ -1837,8 +1845,7 @@ class ClientTest extends TestCase
 
     public function testCreatePersonalData(): void
     {
-        $personalData = CreatePersonalDataRequest::builder()
-            ->setType(PersonalDataType::SBP_PAYOUT_RECIPIENT)
+        $personalData = SbpPayoutRecipientPersonalDataRequest::builder()
             ->setLastName('Иванов')
             ->setFirstName('Иван')
             ->setMiddleName('Иванович')
@@ -1867,11 +1874,11 @@ class ClientTest extends TestCase
         self::assertSame($curlClientStub, $apiClient->getApiClient());
         self::assertInstanceOf(PersonalDataResponse::class, $response);
 
-        $personalData = CreatePersonalDataRequest::builder()
-            ->setType(PersonalDataType::SBP_PAYOUT_RECIPIENT)
+        $personalData = PayoutStatementRecipientPersonalDataRequest::builder()
             ->setLastName('Иванов')
             ->setFirstName('Иван')
             ->setMiddleName('Иванович')
+            ->setBirthdate('2000-01-02')
             ->setMetadata(['recipient_id' => '37'])
             ->build()
         ;
@@ -1913,10 +1920,11 @@ class ClientTest extends TestCase
             ->setApiClient($curlClientStub)
             ->setAuth('123456', 'shopPassword')
             ->createPersonalData([
-                'type' => 'sbp_payout_recipient',
+                'type' => PersonalDataType::PAYOUT_STATEMENT_RECIPIENT,
                 'last_name' => 'Иванов',
                 'first_name' => 'Иван',
                 'middle_name' => 'Иванович',
+                'birthdate' => '2000-01-02',
                 'metadata' => ['recipient_id' => '37'],
             ], 123)
         ;
@@ -2018,7 +2026,7 @@ class ClientTest extends TestCase
      * @throws UnauthorizedException
      * @throws ExtensionNotFoundException
      */
-    public function testGetPersonalDataInfo(mixed $personalDataId, string $exceptionClassName = null): void
+    public function testGetPersonalDataInfo(mixed $personalDataId, ?string $exceptionClassName = null): void
     {
         $curlClientStub = $this->getCurlClientStub();
         $curlClientStub
@@ -2299,7 +2307,7 @@ class ClientTest extends TestCase
      * @throws TooManyRequestsException
      * @throws UnauthorizedException
      */
-    public function testGetSelfEmployedInfo($selfEmployedId, string $exceptionClassName = null): void
+    public function testGetSelfEmployedInfo($selfEmployedId, ?string $exceptionClassName = null): void
     {
         $curlClientStub = $this->getCurlClientStub();
         $curlClientStub
@@ -2364,6 +2372,311 @@ class ClientTest extends TestCase
             [0.1, InvalidArgumentException::class],
             [Random::str(35), InvalidArgumentException::class],
             [Random::str(51), InvalidArgumentException::class],
+        ];
+    }
+
+    public function testCreateInvoice(): void
+    {
+        $invoice = CreateInvoiceRequest::builder()
+            ->setPaymentData([
+                'amount' => new MonetaryAmount(Random::int(1, 1000000), 'RUB'),
+                'save_payment_method' => true,
+                'description' => Random::str(5, 128),
+                'client_ip' => Internet::localIpv4(),
+            ])
+            ->setCart([
+                [
+                    'description' => Random::str(5, 128),
+                    'price' => new MonetaryAmount(Random::int(1, 1000000), 'RUB'),
+                    'discount_price' => null,
+                    'quantity' => Random::int(1, 10),
+                ]
+            ])
+            ->setExpiresAt(new DateTime('+ 1 month'))
+            ->build()
+        ;
+
+        $curlClientStub = $this->getCurlClientStub();
+        $curlClientStub
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn([
+                ['Header-Name' => 'HeaderValue'],
+                $this->getFixtures('createInvoiceFixtures.json'),
+                ['http_code' => 200],
+            ])
+        ;
+
+        $apiClient = new Client();
+        $response = $apiClient
+            ->setApiClient($curlClientStub)
+            ->setAuth('123456', 'shopPassword')
+            ->createInvoice($invoice)
+        ;
+
+        self::assertSame($curlClientStub, $apiClient->getApiClient());
+        self::assertInstanceOf(InvoiceResponse::class, $response);
+
+        $invoice = CreateInvoiceRequest::builder()
+            ->setPaymentData([
+                'amount' => new MonetaryAmount(Random::int(1, 1000000), 'RUB'),
+                'save_payment_method' => true,
+                'description' => Random::str(5, 128),
+                'client_ip' => Internet::localIpv4(),
+            ])
+            ->setCart([
+                [
+                    'description' => Random::str(5, 128),
+                    'price' => new MonetaryAmount(Random::int(1, 1000000), 'RUB'),
+                    'discount_price' => null,
+                    'quantity' => Random::int(1, 10),
+                ]
+            ])
+            ->setExpiresAt(new DateTime('+ 1 month'))
+            ->build()
+        ;
+
+        $curlClientStub = $this->getCurlClientStub();
+        $curlClientStub
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn([
+                ['Header-Name' => 'HeaderValue'],
+                $this->getFixtures('createInvoiceFixtures.json'),
+                ['http_code' => 200],
+            ])
+        ;
+
+        $apiClient = new Client();
+        $response = $apiClient
+            ->setApiClient($curlClientStub)
+            ->setAuth('123456', 'shopPassword')
+            ->createInvoice($invoice)
+        ;
+
+        self::assertSame($curlClientStub, $apiClient->getApiClient());
+        self::assertInstanceOf(InvoiceResponse::class, $response);
+
+        $curlClientStub = $this->getCurlClientStub();
+        $curlClientStub
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->willReturn([
+                ['Header-Name' => 'HeaderValue'],
+                $this->getFixtures('createInvoiceFixtures.json'),
+                ['http_code' => 200],
+            ])
+        ;
+
+        $apiClient = new Client();
+        $response = $apiClient
+            ->setApiClient($curlClientStub)
+            ->setAuth('123456', 'shopPassword')
+            ->createInvoice([
+                'payment_data' => new PaymentData([
+                    'amount' => new MonetaryAmount(Random::int(1, 1000000), 'RUB'),
+                    'save_payment_method' => true,
+                    'description' => Random::str(5, 128),
+                    'client_ip' => Internet::localIpv4(),
+                ]),
+                'cart' => [
+                    new LineItem([
+                        'description' => Random::str(5, 128),
+                        'price' => new MonetaryAmount(Random::int(1, 1000000), 'RUB'),
+                        'discount_price' => null,
+                        'quantity' => Random::int(1, 10),
+                    ]),
+                ],
+                'delivery_method_data' => ['type' => 'self'],
+                'expires_at' => new DateTime('+ 1 month'),
+                'locale' => Random::value(['ru_RU', 'en_US', null]),
+                'description' => Random::str(5, 128),
+                'metadata' => ['test' => 'test'],
+            ], 123)
+        ;
+
+        self::assertSame($curlClientStub, $apiClient->getApiClient());
+        self::assertInstanceOf(InvoiceResponse::class, $response);
+
+        $curlClientStub = $this->getCurlClientStub();
+        $curlClientStub
+            ->expects($this->any())
+            ->method('sendRequest')
+            ->willReturn([
+                ['Header-Name' => 'HeaderValue'],
+                '{"type":"error","code":"request_accepted","retry_after":1800}',
+                ['http_code' => 202],
+            ])
+        ;
+
+        try {
+            $response = $apiClient
+                ->setApiClient($curlClientStub)
+                ->setAuth('123456', 'shopPassword')
+                ->createInvoice($invoice, 123)
+            ;
+            self::fail('Исключение не было выброшено');
+        } catch (ApiException $e) {
+            self::assertInstanceOf(ResponseProcessingException::class, $e);
+
+            return;
+        }
+
+        $curlClientStub = $this->getCurlClientStub();
+        $curlClientStub
+            ->expects($this->any())
+            ->method('sendRequest')
+            ->willReturn([
+                ['Header-Name' => 'HeaderValue'],
+                '{"type":"error","code":"request_accepted"}',
+                ['http_code' => 202],
+            ])
+        ;
+
+        try {
+            $apiClient->setRetryTimeout(0);
+            $response = $apiClient
+                ->setApiClient($curlClientStub)
+                ->setAuth('123456', 'shopPassword')
+                ->createInvoice($invoice, 123)
+            ;
+            self::fail('Исключение не было выброшено');
+        } catch (ResponseProcessingException $e) {
+            self::assertEquals(Client::DEFAULT_DELAY, $e->retryAfter);
+
+            return;
+        }
+
+        $curlClientStub = $this->getCurlClientStub();
+        $curlClientStub
+            ->expects($this->any())
+            ->method('sendRequest')
+            ->willReturn([
+                ['Header-Name' => 'HeaderValue'],
+                '{"type":"error","code":"request_accepted"}',
+                ['http_code' => 202],
+            ])
+        ;
+
+        try {
+            $apiClient->setRetryTimeout(0);
+            $response = $apiClient
+                ->setApiClient($curlClientStub)
+                ->setAuth('123456', 'shopPassword')
+                ->createInvoice([
+                    'payment_data' => new PaymentData([
+                        'amount' => new MonetaryAmount(Random::int(1, 1000000), 'RUB'),
+                        'save_payment_method' => true,
+                        'description' => Random::str(5, 128),
+                        'client_ip' => Internet::localIpv4(),
+                    ]),
+                    'cart' => [
+                        new LineItem([
+                            'description' => Random::str(5, 128),
+                            'price' => new MonetaryAmount(Random::int(1, 1000000), 'RUB'),
+                            'discount_price' => null,
+                            'quantity' => Random::int(1, 10),
+                        ]),
+                    ],
+                    'delivery_method_data' => ['type' => 'self'],
+                    'expires_at' => new DateTime('+ 1 month'),
+                    'locale' => Random::value(['ru_RU', 'en_US', null]),
+                    'description' => Random::str(5, 128),
+                    'metadata' => ['test' => 'test'],
+                ], 123)
+            ;
+            self::fail('Исключение не было выброшено');
+        } catch (ResponseProcessingException $e) {
+            self::assertEquals(Client::DEFAULT_DELAY, $e->retryAfter);
+
+            return;
+        }
+    }
+
+    /**
+     * @dataProvider invoiceInfoDataProvider
+     *
+     * @param mixed $invoiceId
+     * @param string|null $exceptionClassName
+     *
+     * @throws ApiConnectionException
+     * @throws ApiException
+     * @throws AuthorizeException
+     * @throws BadApiRequestException
+     * @throws ExtensionNotFoundException
+     * @throws ForbiddenException
+     * @throws InternalServerError
+     * @throws JsonException
+     * @throws NotFoundException
+     * @throws ResponseProcessingException
+     * @throws TooManyRequestsException
+     * @throws UnauthorizedException
+     */
+    public function testGetInvoiceInfo(mixed $invoiceId, ?string $exceptionClassName = null): void
+    {
+        $curlClientStub = $this->getCurlClientStub();
+        $curlClientStub
+            ->expects(null !== $exceptionClassName ? self::never() : self::once())
+            ->method('sendRequest')
+            ->willReturn([
+                ['Header-Name' => 'HeaderValue'],
+                $this->getFixtures('invoiceInfoFixtures.json'),
+                ['http_code' => 200],
+            ])
+        ;
+
+        $apiClient = new Client();
+
+        if (null !== $exceptionClassName) {
+            $this->expectException($exceptionClassName);
+        }
+
+        $response = $apiClient
+            ->setApiClient($curlClientStub)
+            ->setAuth('123456', 'shopPassword')
+            ->getInvoiceInfo($invoiceId)
+        ;
+
+        self::assertInstanceOf(InvoiceResponse::class, $response);
+
+        $curlClientStub = $this->getCurlClientStub();
+        $curlClientStub
+            ->expects($this->any())
+            ->method('sendRequest')
+            ->willReturn([
+                ['Header-Name' => 'HeaderValue'],
+                '{"type":"error","code":"request_accepted","retry_after":1800}',
+                ['http_code' => 202],
+            ])
+        ;
+
+        try {
+            $apiClient->setRetryTimeout(0);
+            $response = $apiClient
+                ->setApiClient($curlClientStub)
+                ->setAuth('123456', 'shopPassword')
+                ->getInvoiceInfo($invoiceId)
+            ;
+            self::fail('Исключение не было выброшено');
+        } catch (ResponseProcessingException $e) {
+            self::assertEquals(Client::DEFAULT_DELAY, $e->retryAfter);
+
+            return;
+        }
+    }
+
+    public static function invoiceInfoDataProvider(): array
+    {
+        return [
+            [Random::str(39)],
+            [new StringObject(Random::str(39))],
+            [true, InvalidArgumentException::class],
+            [false, InvalidArgumentException::class],
+            [0, InvalidArgumentException::class],
+            [1, InvalidArgumentException::class],
+            [0.1, InvalidArgumentException::class],
+            [Random::str(38), InvalidArgumentException::class],
+            [Random::str(41), InvalidArgumentException::class],
         ];
     }
 

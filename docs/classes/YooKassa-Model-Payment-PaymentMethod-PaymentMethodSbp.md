@@ -20,6 +20,8 @@
 | Visibility | Name | Flag | Summary |
 | ----------:| ---- | ---- | ------- |
 | public | [$id](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#property_id) |  | Идентификатор записи о сохраненных платежных данных |
+| public | [$payer_bank_details](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md#property_payer_bank_details) |  | Реквизиты счета, который использовался для оплаты. |
+| public | [$payerBankDetails](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md#property_payerBankDetails) |  | Реквизиты счета, который использовался для оплаты. |
 | public | [$saved](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#property_saved) |  | Возможность многократного использования |
 | public | [$sbp_operation_id](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md#property_sbp_operation_id) |  | Идентификатор операции в СБП (НСПК). |
 | public | [$sbpOperationId](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md#property_sbpOperationId) |  | Идентификатор операции в СБП (НСПК). |
@@ -41,6 +43,7 @@
 | public | [__unset()](../classes/YooKassa-Common-AbstractObject.md#method___unset) |  | Удаляет свойство. |
 | public | [fromArray()](../classes/YooKassa-Common-AbstractObject.md#method_fromArray) |  | Устанавливает значения свойств текущего объекта из массива. |
 | public | [getId()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_getId) |  | Возвращает id. |
+| public | [getPayerBankDetails()](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md#method_getPayerBankDetails) |  | Возвращает payer_bank_details. |
 | public | [getSaved()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_getSaved) |  | Возвращает saved. |
 | public | [getSbpOperationId()](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md#method_getSbpOperationId) |  | Возвращает sbp_operation_id. |
 | public | [getTitle()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_getTitle) |  | Возвращает Название способа оплаты. |
@@ -52,6 +55,7 @@
 | public | [offsetSet()](../classes/YooKassa-Common-AbstractObject.md#method_offsetSet) |  | Устанавливает значение свойства. |
 | public | [offsetUnset()](../classes/YooKassa-Common-AbstractObject.md#method_offsetUnset) |  | Удаляет свойство. |
 | public | [setId()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_setId) |  | Устанавливает id. |
+| public | [setPayerBankDetails()](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md#method_setPayerBankDetails) |  | Устанавливает payer_bank_details. |
 | public | [setSaved()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_setSaved) |  | Устанавливает признак возможности многократного использования. |
 | public | [setSbpOperationId()](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md#method_setSbpOperationId) |  | Устанавливает sbp_operation_id. |
 | public | [setTitle()](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md#method_setTitle) |  | Устанавливает Название способа оплаты. |
@@ -92,6 +96,30 @@
 
 **Details:**
 * Inherited From: [\YooKassa\Model\Payment\PaymentMethod\AbstractPaymentMethod](../classes/YooKassa-Model-Payment-PaymentMethod-AbstractPaymentMethod.md)
+
+
+<a name="property_payer_bank_details"></a>
+#### public $payer_bank_details : \YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|null
+---
+***Description***
+
+Реквизиты счета, который использовался для оплаты.
+
+**Type:** <a href="../\YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|null"><abbr title="\YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|null">SbpPayerBankDetails|null</abbr></a>
+
+**Details:**
+
+
+<a name="property_payerBankDetails"></a>
+#### public $payerBankDetails : \YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|null
+---
+***Description***
+
+Реквизиты счета, который использовался для оплаты.
+
+**Type:** <a href="../\YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|null"><abbr title="\YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|null">SbpPayerBankDetails|null</abbr></a>
+
+**Details:**
 
 
 <a name="property_saved"></a>
@@ -358,6 +386,23 @@ public getId() : string|null
 **Returns:** string|null - 
 
 
+<a name="method_getPayerBankDetails" class="anchor"></a>
+#### public getPayerBankDetails() : \YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|null
+
+```php
+public getPayerBankDetails() : \YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|null
+```
+
+**Summary**
+
+Возвращает payer_bank_details.
+
+**Details:**
+* Inherited From: [\YooKassa\Model\Payment\PaymentMethod\PaymentMethodSbp](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md)
+
+**Returns:** \YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|null - Реквизиты счета, который использовался для оплаты.
+
+
 <a name="method_getSaved" class="anchor"></a>
 #### public getSaved() : bool|null
 
@@ -389,7 +434,7 @@ public getSbpOperationId() : string|null
 **Details:**
 * Inherited From: [\YooKassa\Model\Payment\PaymentMethod\PaymentMethodSbp](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md)
 
-**Returns:** string|null - 
+**Returns:** string|null - Идентификатор операции в СБП (НСПК).
 
 
 <a name="method_getTitle" class="anchor"></a>
@@ -572,6 +617,28 @@ public setId(string|null $id = null) : self
 **Returns:** self - 
 
 
+<a name="method_setPayerBankDetails" class="anchor"></a>
+#### public setPayerBankDetails() : self
+
+```php
+public setPayerBankDetails(\YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails|array|null $payer_bank_details = null) : self
+```
+
+**Summary**
+
+Устанавливает payer_bank_details.
+
+**Details:**
+* Inherited From: [\YooKassa\Model\Payment\PaymentMethod\PaymentMethodSbp](../classes/YooKassa-Model-Payment-PaymentMethod-PaymentMethodSbp.md)
+
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code lang="php">\YooKassa\Model\Payment\PaymentMethod\SbpPayerBankDetails OR array OR null</code> | payer_bank_details  | Реквизиты счета, который использовался для оплаты. |
+
+**Returns:** self - 
+
+
 <a name="method_setSaved" class="anchor"></a>
 #### public setSaved() : self
 
@@ -736,10 +803,10 @@ protected validatePropertyValue(string $propertyName, mixed $propertyValue) : mi
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

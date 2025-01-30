@@ -1,9 +1,9 @@
 # YooKassa API PHP Client Library
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/businessprocess/yookassa-sdk-php?label=stable)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
-[![Total Downloads](https://img.shields.io/packagist/dt/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
-[![Monthly Downloads](https://img.shields.io/packagist/dm/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
-[![License](https://img.shields.io/packagist/l/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
+[![Latest Stable Version](https://img.shields.io/packagist/v/yoomoney/yookassa-sdk-php?label=stable)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/yoomoney/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/yoomoney/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
+[![License](https://img.shields.io/packagist/l/yoomoney/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
 
 Russian | [English](README.en.md)
 
@@ -20,16 +20,16 @@ PHP 8.0 (и выше) с расширением libcurl
 1. [Установите менеджер пакетов Composer](https://getcomposer.org/download/).
 2. В консоли выполните команду:
 ```bash
-composer require businessprocess/yookassa-sdk-php
+composer require yoomoney/yookassa-sdk-php
 ```
 
 ### В файле composer.json своего проекта
-1. Добавьте строку `"businessprocess/yookassa-sdk-php": "^3.0"` в список зависимостей вашего проекта в файле composer.json:
+1. Добавьте строку `"yoomoney/yookassa-sdk-php": "^3.0"` в список зависимостей вашего проекта в файле composer.json:
 ```
 ...
     "require": {
         "php": ">=8.0",
-        "businessprocess/yookassa-sdk-php": "^3.0"
+        "yoomoney/yookassa-sdk-php": "^3.0"
 ...
 ```
 2. Обновите зависимости проекта. В консоли перейдите в каталог, где лежит composer.json, и выполните команду:
@@ -116,3 +116,8 @@ $client->setAuth('shopId', 'secretKey');
 
 #### [Работа со списком участников СБП](docs/examples/09-sbp-banks.md)
 * [Получить список участников СБП](docs/examples/09-sbp-banks.md#Получить-список-участников-СБП)
+
+#### [Работа со счетами](docs/examples/10-invoices.md)
+* [Запрос на создание счета](docs/examples/10-invoices.md#Запрос-на-создание-счета)
+* [Запрос на создание счета через билдер](docs/examples/10-invoices.md#Запрос-на-создание-счета-через-билдер)
+* [Получить информацию о счете](docs/examples/10-invoices.md#Получить-информацию-о-счете)

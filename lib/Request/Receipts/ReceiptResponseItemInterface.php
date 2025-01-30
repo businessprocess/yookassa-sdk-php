@@ -1,9 +1,9 @@
 <?php
 
-/**
- * The MIT License.
+/*
+ * The MIT License
  *
- * Copyright (c) 2023 "YooMoney", NBСO LLC
+ * Copyright (c) 2025 "YooMoney", NBСO LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,8 +46,8 @@ use YooKassa\Model\Receipt\SupplierInterface;
  * @property float $quantity Количество (тег в 54 ФЗ — 1023)
  * @property float $amount Суммарная стоимость покупаемого товара в копейках/центах
  * @property AmountInterface $price Цена товара (тег в 54 ФЗ — 1079)
- * @property int $vatCode Ставка НДС, число 1-6 (тег в 54 ФЗ — 1199)
- * @property int $vat_code Ставка НДС, число 1-6 (тег в 54 ФЗ — 1199)
+ * @property int $vatCode Ставка НДС, число 1-10 (тег в 54 ФЗ — 1199)
+ * @property int $vat_code Ставка НДС, число 1-10 (тег в 54 ФЗ — 1199)
  * @property string $paymentSubject Признак предмета расчета (тег в 54 ФЗ — 1212)
  * @property string $payment_subject Признак предмета расчета (тег в 54 ФЗ — 1212)
  * @property string $paymentMode Признак способа расчета (тег в 54 ФЗ — 1214)
@@ -103,7 +103,7 @@ interface ReceiptResponseItemInterface
     /**
      * Возвращает ставку НДС
      *
-     * @return null|int Ставка НДС, число 1-6, или null, если ставка не задана
+     * @return null|int Ставка НДС, число 1-10, или null, если ставка не задана
      */
     public function getVatCode(): ?int;
 

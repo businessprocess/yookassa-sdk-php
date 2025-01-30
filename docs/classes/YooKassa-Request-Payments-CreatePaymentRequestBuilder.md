@@ -124,7 +124,7 @@ var_dump($response);
 | public | [setCurrency()](../classes/YooKassa-Request-Payments-AbstractPaymentRequestBuilder.md#method_setCurrency) |  | Устанавливает валюту в которой будет происходить подтверждение оплаты заказа. |
 | public | [setDeal()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setDeal) |  | Устанавливает сделку. |
 | public | [setDescription()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setDescription) |  | Устанавливает описание транзакции. |
-| public | [setFraudData()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setFraudData) |  | Устанавливает сделку. |
+| public | [setFraudData()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setFraudData) | *deprecated* | Устанавливает информацию для проверки операции на мошенничество. |
 | public | [setGatewayId()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setGatewayId) |  | Устанавливает идентификатор шлюза. |
 | public | [setMerchantCustomerId()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setMerchantCustomerId) |  | Устанавливает идентификатор покупателя в вашей системе. |
 | public | [setMetadata()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setMetadata) |  | Устанавливает метаданные, привязанные к платежу. |
@@ -138,6 +138,7 @@ var_dump($response);
 | public | [setReceiptItems()](../classes/YooKassa-Request-Payments-AbstractPaymentRequestBuilder.md#method_setReceiptItems) |  | Устанавливает список товаров для создания чека. |
 | public | [setReceiptOperationalDetails()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setReceiptOperationalDetails) |  | Устанавливает отраслевой реквизит чека. |
 | public | [setReceiptPhone()](../classes/YooKassa-Request-Payments-AbstractPaymentRequestBuilder.md#method_setReceiptPhone) |  | Устанавливает телефон получателя чека. |
+| public | [setReceiver()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setReceiver) |  | Устанавливает реквизиты получателя оплаты. |
 | public | [setRecipient()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setRecipient) |  | Устанавливает получателя платежа из объекта или ассоциативного массива. |
 | public | [setSavePaymentMethod()](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md#method_setSavePaymentMethod) |  | Устанавливает флаг сохранения платёжных данных. Значение true инициирует создание многоразового payment_method. |
 | public | [setTaxSystemCode()](../classes/YooKassa-Request-Payments-AbstractPaymentRequestBuilder.md#method_setTaxSystemCode) |  | Устанавливает код системы налогообложения. |
@@ -564,7 +565,7 @@ public setDescription(string|null $value) : \YooKassa\Request\Payments\CreatePay
 
 
 <a name="method_setFraudData" class="anchor"></a>
-#### public setFraudData() : \YooKassa\Request\Payments\CreatePaymentRequestBuilder
+#### (deprecated) - public setFraudData() : \YooKassa\Request\Payments\CreatePaymentRequestBuilder
 
 ```php
 public setFraudData(null|array|\YooKassa\Request\Payments\FraudData $value) : \YooKassa\Request\Payments\CreatePaymentRequestBuilder
@@ -572,22 +573,24 @@ public setFraudData(null|array|\YooKassa\Request\Payments\FraudData $value) : \Y
 
 **Summary**
 
-Устанавливает сделку.
+Устанавливает информацию для проверки операции на мошенничество.
 
+**Deprecated**
+DeprecatedБольше не поддерживается. Вместо него нужно использовать `setReceiver()`
 **Details:**
 * Inherited From: [\YooKassa\Request\Payments\CreatePaymentRequestBuilder](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md)
 
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
-| <code lang="php">null OR array OR \YooKassa\Request\Payments\FraudData</code> | value  | Данные о сделке, в составе которой проходит платеж |
+| <code lang="php">null OR array OR \YooKassa\Request\Payments\FraudData</code> | value  | Информация для проверки операции на мошенничество |
 
 ##### Throws:
 | Type | Description |
 | ---- | ----------- |
 | \YooKassa\Common\Exceptions\InvalidPropertyValueTypeException |  |
 
-**Returns:** \YooKassa\Request\Payments\CreatePaymentRequestBuilder - Информация для проверки операции на мошенничество
+**Returns:** \YooKassa\Request\Payments\CreatePaymentRequestBuilder - Инстанс билдера запросов
 
 
 <a name="method_setGatewayId" class="anchor"></a>
@@ -920,6 +923,33 @@ public setReceiptPhone(string|null $value) : self
 **Returns:** self - Инстанс билдера запросов
 
 
+<a name="method_setReceiver" class="anchor"></a>
+#### public setReceiver() : \YooKassa\Request\Payments\CreatePaymentRequestBuilder
+
+```php
+public setReceiver(null|array|\YooKassa\Request\Payments\ReceiverData\AbstractReceiver $value) : \YooKassa\Request\Payments\CreatePaymentRequestBuilder
+```
+
+**Summary**
+
+Устанавливает реквизиты получателя оплаты.
+
+**Details:**
+* Inherited From: [\YooKassa\Request\Payments\CreatePaymentRequestBuilder](../classes/YooKassa-Request-Payments-CreatePaymentRequestBuilder.md)
+
+##### Parameters:
+| Type | Name | Description |
+| ---- | ---- | ----------- |
+| <code lang="php">null OR array OR \YooKassa\Request\Payments\ReceiverData\AbstractReceiver</code> | value  | Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона |
+
+##### Throws:
+| Type | Description |
+| ---- | ----------- |
+| \YooKassa\Common\Exceptions\InvalidPropertyValueTypeException |  |
+
+**Returns:** \YooKassa\Request\Payments\CreatePaymentRequestBuilder - Инстанс билдера запросов
+
+
 <a name="method_setRecipient" class="anchor"></a>
 #### public setRecipient() : \YooKassa\Request\Payments\CreatePaymentRequestBuilder
 
@@ -1064,10 +1094,10 @@ protected initCurrentObject() : \YooKassa\Request\Payments\CreatePaymentRequest
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

@@ -1,9 +1,9 @@
 <?php
 
-/**
- * The MIT License.
+/*
+ * The MIT License
  *
- * Copyright (c) 2023 "YooMoney", NBСO LLC
+ * Copyright (c) 2025 "YooMoney", NBСO LLC
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,6 +36,7 @@ use YooKassa\Model\Payment\TransferInterface;
 use YooKassa\Model\Receipt\ReceiptInterface;
 use YooKassa\Request\Payments\ConfirmationAttributes\AbstractConfirmationAttributes;
 use YooKassa\Request\Payments\PaymentData\AbstractPaymentData;
+use YooKassa\Request\Payments\ReceiverData\AbstractReceiver;
 
 /**
  * Interface CreatePaymentRequestInterface.
@@ -63,10 +64,9 @@ use YooKassa\Request\Payments\PaymentData\AbstractPaymentData;
  * @property string $client_ip IPv4 или IPv6-адрес покупателя. Если не указан, используется IP-адрес TCP-подключения
  * @property Metadata $metadata Метаданные привязанные к платежу
  * @property PaymentDealInfo $deal Данные о сделке, в составе которой проходит платеж
- * @property FraudData $fraudData Информация для проверки операции на мошенничество
- * @property FraudData $fraud_data Информация для проверки операции на мошенничество
  * @property string $merchantCustomerId Идентификатор покупателя в вашей системе, например электронная почта или номер телефона
  * @property string $merchant_customer_id Идентификатор покупателя в вашей системе, например электронная почта или номер телефона
+ * @property AbstractReceiver|null $receiver Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона
  */
 interface CreatePaymentRequestInterface
 {
@@ -365,27 +365,6 @@ interface CreatePaymentRequestInterface
     public function setDeal(mixed $deal): self;
 
     /**
-     * Возвращает информацию для проверки операции на мошенничество.
-     *
-     * @return null|FraudData Информация для проверки операции на мошенничество
-     */
-    public function getFraudData(): ?FraudData;
-
-    /**
-     * Проверяет, была ли установлена информация для проверки операции на мошенничество.
-     *
-     * @return bool True если информация была установлена, false если нет
-     */
-    public function hasFraudData(): bool;
-
-    /**
-     * Устанавливает информацию для проверки операции на мошенничество.
-     *
-     * @param null|array|FraudData $fraud_data Информация для проверки операции на мошенничество
-     */
-    public function setFraudData(mixed $fraud_data): self;
-
-    /**
      * Возвращает идентификатор покупателя в вашей системе.
      *
      * @return string|null Идентификатор покупателя в вашей системе
@@ -405,4 +384,26 @@ interface CreatePaymentRequestInterface
      * @param string|null $merchant_customer_id Идентификатор покупателя в вашей системе, например электронная почта или номер телефона. Не более 200 символов
      */
     public function setMerchantCustomerId(?string $merchant_customer_id): self;
+
+
+    /**
+     * Возвращает реквизиты получателя оплаты.
+     *
+     * @return null|AbstractReceiver Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона.
+     */
+    public function getReceiver(): ?AbstractReceiver;
+
+    /**
+     * Проверяет, были ли установлены реквизиты получателя оплаты.
+     *
+     * @return bool True если реквизиты получателя оплаты были установлены, false если нет
+     */
+    public function hasReceiver(): bool;
+
+    /**
+     * Устанавливает реквизиты получателя оплаты.
+     *
+     * @param null|array|AbstractReceiver $receiver Реквизиты получателя оплаты при пополнении электронного кошелька, банковского счета или баланса телефона.
+     */
+    public function setReceiver(mixed $receiver): self;
 }

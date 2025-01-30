@@ -25,7 +25,8 @@
 | public | [PERSONAL_DATA_PATH](../classes/YooKassa-Client-BaseClient.md#constant_PERSONAL_DATA_PATH) |  | Точка входа для запросов к API по персональным данным |
 | public | [SBP_BANKS_PATH](../classes/YooKassa-Client-BaseClient.md#constant_SBP_BANKS_PATH) |  | Точка входа для запросов к API по участникам СБП |
 | public | [SELF_EMPLOYED_PATH](../classes/YooKassa-Client-BaseClient.md#constant_SELF_EMPLOYED_PATH) |  | Точка входа для запросов к API по самозанятым |
-| public | [IDEMPOTENCY_KEY_HEADER](../classes/YooKassa-Client-BaseClient.md#constant_IDEMPOTENCY_KEY_HEADER) |  | Имя HTTP заголовка, используемого для передачи idempotence key |
+| public | [INVOICES_PATH](../classes/YooKassa-Client-BaseClient.md#constant_INVOICES_PATH) |  | Точка входа для запросов к API по счетам |
+| public | [IDEMPOTENCE_KEY_HEADER](../classes/YooKassa-Client-BaseClient.md#constant_IDEMPOTENCE_KEY_HEADER) |  | Имя HTTP заголовка, используемого для передачи idempotence key |
 | public | [DEFAULT_DELAY](../classes/YooKassa-Client-BaseClient.md#constant_DEFAULT_DELAY) |  | Значение по умолчанию времени ожидания между запросами при отправке повторного запроса в случае получения ответа с HTTP статусом 202. |
 | public | [DEFAULT_TRIES_COUNT](../classes/YooKassa-Client-BaseClient.md#constant_DEFAULT_TRIES_COUNT) |  | Значение по умолчанию количества попыток получения информации от API если пришёл ответ с HTTP статусом 202 |
 | public | [DEFAULT_ATTEMPTS_COUNT](../classes/YooKassa-Client-BaseClient.md#constant_DEFAULT_ATTEMPTS_COUNT) |  | Значение по умолчанию количества попыток получения информации от API если пришёл ответ с HTTP статусом 202 |
@@ -172,12 +173,21 @@ SELF_EMPLOYED_PATH = '/self_employed'
 ```
 
 
-<a name="constant_IDEMPOTENCY_KEY_HEADER" class="anchor"></a>
-###### IDEMPOTENCY_KEY_HEADER
+<a name="constant_INVOICES_PATH" class="anchor"></a>
+###### INVOICES_PATH
+Точка входа для запросов к API по счетам
+
+```php
+INVOICES_PATH = '/invoices'
+```
+
+
+<a name="constant_IDEMPOTENCE_KEY_HEADER" class="anchor"></a>
+###### IDEMPOTENCE_KEY_HEADER
 Имя HTTP заголовка, используемого для передачи idempotence key
 
 ```php
-IDEMPOTENCY_KEY_HEADER = 'Idempotence-Key'
+IDEMPOTENCE_KEY_HEADER = 'Idempotence-Key'
 ```
 
 
@@ -310,7 +320,7 @@ shopId магазина.
 #### public __construct() : mixed
 
 ```php
-public __construct(\YooKassa\Client\ApiClientInterface $apiClient = null, \YooKassa\Helpers\Config\ConfigurationLoaderInterface $configLoader = null) : mixed
+public __construct(?\YooKassa\Client\ApiClientInterface $apiClient = null, ?\YooKassa\Helpers\Config\ConfigurationLoaderInterface $configLoader = null) : mixed
 ```
 
 **Summary**
@@ -323,8 +333,8 @@ Constructor.
 ##### Parameters:
 | Type | Name | Description |
 | ---- | ---- | ----------- |
-| <code lang="php">\YooKassa\Client\ApiClientInterface</code> | apiClient  |  |
-| <code lang="php">\YooKassa\Helpers\Config\ConfigurationLoaderInterface</code> | configLoader  |  |
+| <code lang="php">?\YooKassa\Client\ApiClientInterface</code> | apiClient  |  |
+| <code lang="php">?\YooKassa\Helpers\Config\ConfigurationLoaderInterface</code> | configLoader  |  |
 
 **Returns:** mixed - 
 
@@ -721,10 +731,10 @@ protected handleError(\YooKassa\Common\ResponseObject $response) : void
 ### Reports
 * [Errors - 0](../reports/errors.md)
 * [Markers - 0](../reports/markers.md)
-* [Deprecated - 19](../reports/deprecated.md)
+* [Deprecated - 32](../reports/deprecated.md)
 
 ---
 
-This document was automatically generated from source code comments on 2023-12-11 using [phpDocumentor](http://www.phpdoc.org/)
+This document was automatically generated from source code comments on 2025-01-17 using [phpDocumentor](http://www.phpdoc.org/)
 
-&copy; 2023 YooMoney
+&copy; 2025 YooMoney

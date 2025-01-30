@@ -1,9 +1,9 @@
 # The YooKassa API PHP Client Library
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/businessprocess/yookassa-sdk-php?label=stable)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
-[![Total Downloads](https://img.shields.io/packagist/dt/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
-[![Monthly Downloads](https://img.shields.io/packagist/dm/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
-[![License](https://img.shields.io/packagist/l/businessprocess/yookassa-sdk-php)](https://packagist.org/packages/businessprocess/yookassa-sdk-php)
+[![Latest Stable Version](https://img.shields.io/packagist/v/yoomoney/yookassa-sdk-php?label=stable)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/yoomoney/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
+[![Monthly Downloads](https://img.shields.io/packagist/dm/yoomoney/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
+[![License](https://img.shields.io/packagist/l/yoomoney/yookassa-sdk-php)](https://packagist.org/packages/yoomoney/yookassa-sdk-php)
 
 [Russian](README.md) | English
 
@@ -18,16 +18,16 @@ PHP 8.0 (or later version) with the libcurl library
 1. [Install Composer, a package manager](https://getcomposer.org/download/).
 2. In the console, run the following command:
 ```bash
-composer require businessprocess/yookassa-sdk-php
+composer require yoomoney/yookassa-sdk-php
 ```
 
 ### Do the following for the composer.json file of your project:
-1. Add a string `"businessprocess/yookassa-sdk-php": "^3.0"` to the list of dependencies of your project in the composer.json file:
+1. Add a string `"yoomoney/yookassa-sdk-php": "^3.0"` to the list of dependencies of your project in the composer.json file:
 ```
 ...
    "require": {
         "php": ">=8.0",
-        "businessprocess/yookassa-sdk-php": "^3.0"
+        "yoomoney/yookassa-sdk-php": "^3.0"
 ...
 ```
 2. Refresh the project's dependencies. In the console, navigate to the catalog with composer.json and run the following command:
@@ -114,3 +114,8 @@ $client->setAuth('shopId', 'secretKey');
 
 #### [Working with the list of Fast Payment Service participants](docs/examples/09-sbp-banks.md)
 * [Get a list of Fast Payment Service participants](docs/examples/09-sbp-banks.md#Получить-список-участников-СБП)
+
+#### [Working with invoices](docs/examples/10-invoices.md)
+* [Request to create an invoice](docs/examples/10-invoices.md#Запрос-на-создание-счета)
+* [Request to create an invoice via the builder](docs/examples/10-invoices.md#Запрос-на-создание-счета-через-билдер)
+* [Get information about the invoice](docs/examples/10-invoices.md#Получить-информацию-о-счете)
